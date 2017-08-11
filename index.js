@@ -234,6 +234,8 @@ DynamoDBStream.prototype._trimShards = function () {
 DynamoDBStream.prototype._emitRecordEvents = function (events) {
 	debug('_emitRecordEvents')
 
+	this.emit('raw events', events);
+
 	for (var i = 0; i < events.length; i++) {
 		var event = events[i]
 		var newRecord = event.dynamodb.NewImage ? DynamoDBValue.toJavascript(event.dynamodb.NewImage) : null
